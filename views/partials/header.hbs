@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Nightlife Coordination App</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/"><i class="fa fa-home" aria-hidden="true"></i></a>
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" data-toggle="modal" data-target="#login">Login</a>
+        </div>
+        </div>
+    </nav>
+    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Login with:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <a href="/auth/facebook" class="btn btn-dark btn-block facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+       <a href="/auth/twitter" class="btn btn-dark btn-block twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+       <a href="/auth/google" class="btn btn-dark btn-block google"><i class="fa fa-google" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+</div>

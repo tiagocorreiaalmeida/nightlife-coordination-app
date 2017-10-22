@@ -1,0 +1,91 @@
+li{
+    list-style: none;
+}
+
+.fa{
+    padding: 0 10px;
+}
+
+/* Input */
+
+.form-control{
+    border-radius:0;
+}
+.input-group-addon{
+    border-radius:0;
+}
+
+/*---------------------------------*/
+
+/* Icons*/
+.modal-body a i.fa{
+    font-size: 24px;
+}
+
+.facebook,
+.facebook:active{
+    padding: 15px;
+    border:3px solid;
+    background-color:#3b5998;
+    border-color:#3b5998;
+    color:#fff;
+}
+
+.facebook:hover,
+.facebook:focus{
+    box-shadow: none;
+    background-color:#fff;
+    border-color:#3b5998;
+    color:#3b5998;
+
+}
+
+.twitter,
+.twitter:active{
+    padding: 15px;
+    border:3px solid;
+    background-color:#00aced;
+    border-color:#00aced;
+    color:#fff;
+}
+
+.twitter:hover,
+.twitter:focus{
+    box-shadow: none;
+    background-color:#fff;
+    border-color:#00aced;
+    color:#00aced;
+
+}
+
+.google,
+.google:active{
+    padding: 15px;
+    border:3px solid;
+    background-color:#ff4343;
+    border-color:#ff4343;
+    color:#fff;
+}
+
+.google:hover,
+.google:focus{
+    box-shadow: none;
+    background-color:#fff;
+    border-color:#ff4343;
+    color:#ff4343;
+
+}
+
+/*---------------------------------*/
+
+/* Bar Info */
+.card-img-top{
+    height:200px;
+}
+
+.fa-map-marker{
+    padding:0;
+    padding-right:10px;
+}
+
+/*---------------------------------*/
