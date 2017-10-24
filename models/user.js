@@ -8,14 +8,13 @@ const UserSchema = mongoose.Schema({
     name:{
         type:String,
     },
+    photo:{
+        type:String
+    },
     createdAt:{
         type:String,
         required:true
     },
-    social:{
-        type:String,
-        required:true
-    }
 });
 
 const User = mongoose.model("User",UserSchema);
