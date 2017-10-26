@@ -5,7 +5,6 @@ const yelp = require("yelp-fusion");
 const moment = require("moment");
 
 const Place = require("../models/places");
-const User = require("../models/user");
 
 router.get("/", (req, res) => {
     res.render("index");
@@ -40,7 +39,7 @@ router.get("/search/:location", (req, res) => {
                 .save()
                 .then(data => data.toObject());
         });
-        Promise.all(resData.jsonBody.businesses.map(retrievePlace)).then((places) => {
+        Promise.all(resData.jsonBody.businesses.map(retrievePlace)).then(places => {
             res.send(JSON.stringify(places))
         });
     }).catch((e) => { console.log(e); });
