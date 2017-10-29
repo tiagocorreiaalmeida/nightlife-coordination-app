@@ -14,10 +14,6 @@ const UserSchema = mongoose.Schema({
     createdAt:{
         type:String,
         required:true
-    },
-    lastSearch:{
-        type:String,
-        default: ""
     }
 });
 

@@ -23,9 +23,6 @@ router.get("/search/:location", (req, res) => {
         });
     });
     clientRequest.then((resData) => {
-        if(req.isAuthenticated()){
-            User.findByIdAndUpdate(req.user._id,{$set:{"lastSearch":userLocation}}).then((data)=>{}).catch((e)=>console.log(e));
-        }
         if(!resData) return res.send(JSON.stringify({error:"no data"}));
         let retrievePlace = ele => Place.findOne({ id_place: ele.id }).then(data => {
             if (data) return data.toObject();

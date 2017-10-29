@@ -36,6 +36,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use((req,res,next)=>{
     res.locals.isAuthenticated = req.isAuthenticated();
+    res.locals.userphoto = req.user.photo;
+    res.locals.username = req.user.name;
     next();
 });
 
@@ -43,7 +45,6 @@ hbs.registerPartials(__dirname+"/views/partials");
 
 app.get("/auth/facebook",passport.authenticate("facebook"));
 app.get("/auth/facebook/callback",passport.authenticate("facebook",{failureRedirect:"/"}),(req,res)=>{
-    console.log(req);
     res.redirect("/");
 });
 
