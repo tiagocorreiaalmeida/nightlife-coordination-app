@@ -5,6 +5,7 @@ const yelp = require("yelp-fusion");
 const moment = require("moment");
 
 const Place = require("../models/places");
+const User = require("../models/user");
 
 router.get("/", (req, res) => {
     res.render("index");
@@ -22,6 +23,10 @@ router.get("/search/:location", (req, res) => {
         });
     });
     clientRequest.then((resData) => {
+        if(req.isAuthenticated()){
+            User.findByIdAndUpdate(req.user._id,{$set:{"lastSearch":userLocation}}).then((data)=>{}).catch((e)=>console.log(e));
+        }
+        if(!resData) return res.send(JSON.stringify({error:"no data"}));
         let retrievePlace = ele => Place.findOne({ id_place: ele.id }).then(data => {
             if (data) return data.toObject();
             return new Place({
@@ -42,7 +47,15 @@ router.get("/search/:location", (req, res) => {
         Promise.all(resData.jsonBody.businesses.map(retrievePlace)).then(places => {
             res.send(JSON.stringify(places))
         });
-    }).catch((e) => { console.log(e); });
+    }).catch((e) => { 
+        if(e.statusCode === 400){
+            res.send(JSON.stringify({error:"Location not found!"}));
+        }else if(e.statusCode === 500){
+            res.send(JSON.stringify({error:"Something went wrong please try again!"}));
+        }else{
+            console.log(e);
+        }
+     });
 });
 
 router.get("/go/:id", (req, res) => {

@@ -43,6 +43,7 @@ hbs.registerPartials(__dirname+"/views/partials");
 
 app.get("/auth/facebook",passport.authenticate("facebook"));
 app.get("/auth/facebook/callback",passport.authenticate("facebook",{failureRedirect:"/"}),(req,res)=>{
+    console.log(req);
     res.redirect("/");
 });
 

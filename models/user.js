@@ -15,6 +15,10 @@ const UserSchema = mongoose.Schema({
         type:String,
         required:true
     },
+    lastSearch:{
+        type:String,
+        default: ""
+    }
 });
 
 const User = mongoose.model("User",UserSchema);

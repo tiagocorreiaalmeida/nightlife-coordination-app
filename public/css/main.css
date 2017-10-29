@@ -11,8 +11,16 @@ li{
 .form-control{
     border-radius:0;
 }
+body{
+    font-family: 'Lato', sans-serif;
+}
+
 .input-group-addon{
     border-radius:0;
+}
+
+nav{
+    background-color: #D8E6E7;
 }
 
 /*---------------------------------*/
@@ -76,11 +84,26 @@ li{
 
 }
 
+
+/*---------------------------------*/
+
+
+
+/* Load */
+.load-wrap{
+    visibility: hidden;
+}
+
+.load-wrap.active{
+    visibility: visible;
+}
+
 /*---------------------------------*/
 
 /* Bar Info */
 .card-img-top{
-    height:200px;
+    height: 220px;
+    object-fit: cover;
 }
 
 .fa-map-marker{
@@ -89,3 +112,7 @@ li{
 }
 
 /*---------------------------------*/
+
+.alert{
+    width:100%;
+}
