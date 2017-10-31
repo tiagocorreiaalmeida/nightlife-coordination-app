@@ -92,6 +92,8 @@ $(document).ready((()=>{
         $.getJSON("/go/"+buttonid,((data)=>{
             if(data && !data.error){
                 element.text("Going: " + data["users_going"]);
+            }else if(data.error){
+              $("#login-button").click();
             }
         }));
     });

@@ -16,10 +16,11 @@ router.get("/search/:location", (req, res) => {
     let clientRequest = yelp.accessToken(process.env.YELP_ID, process.env.YELP_SECRET).then((response) => {
         const client = yelp.client(response.jsonBody.access_token);
         return client.search({
-            term: "bar",
+            term:'bar',
             location: userLocation,
             open_now: true,
-            limit: 1
+            limit: 10,
+            sort_by: "distance"
         });
     });
     clientRequest.then((resData) => {
@@ -35,7 +36,7 @@ router.get("/search/:location", (req, res) => {
                 rating: ele.rating,
                 phone: ele.phone,
                 coord: ele.coordinates.latitude + "," + ele.coordinates.longitude,
-                address: ele.location.display_address[0] + " " + ele.location.display_address[1] + " " + ele.location.display_address[2],
+                address: ele.location.display_address[0] || "" + " " + ele.location.display_address[1] || "" + " " + ele.location.display_address[2] || "",
                 users_going: []
             })
                 .save()
@@ -79,5 +80,3 @@ router.get("/go/:id", (req, res) => {
 });
 
 module.exports = router;
-
-
