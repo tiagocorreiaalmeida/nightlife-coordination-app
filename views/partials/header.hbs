@@ -2,9 +2,9 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <title>Nightlife Coordination App</title>
-  <link href="https://fonts.googleapis.com/css?family=Lato:300i,400,700" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/css/load.css">
@@ -12,15 +12,15 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
       <a class="navbar-brand" href="/">
-        <i class="fa fa-home" aria-hidden="true"></i>
+        <i class="fa fa-compass" aria-hidden="true"></i>
       </a>
       <div class="navbar-nav">
         {{#if isAuthenticated}}
         <div class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+          <a class="nav-link dropdown-toggle user-info" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
             <img src="{{userphoto}}" alt="user photo"> {{username}}
           </a>
@@ -29,7 +29,7 @@
           </div>
         </div>
         {{else}}
-        <a class="nav-item nav-link" data-toggle="modal" data-target="#login">Login</a>
+        <a class="nav-item nav-link button-white" data-toggle="modal" data-target="#login">Login</a>
         {{/if}}
       </div>
     </div>

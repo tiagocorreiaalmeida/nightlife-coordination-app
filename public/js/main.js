@@ -1,5 +1,9 @@
 let latest = "";
 let request = (searchValue)=>{
+    if(searchValue===""){
+      $(".messages").empty();
+      $(".messages").append('<div class="alert alert-dark" role="alert">Insert a location on the field</div>');
+    }
     if(searchValue!=="" && searchValue !== latest){
         $("#send").attr("disabled","disabled");
         $("#location").attr("disabled","disabled");
@@ -7,15 +11,16 @@ let request = (searchValue)=>{
         $(".load-wrap").addClass("active");
         $.getJSON("/search/"+searchValue,((data)=>{
                 $("#dataInfo").empty();
+                $(".messages").empty();
                 if(data.error){
-                    $("#dataInfo").append(`<div class="alert alert-danger" role="alert">${data.error}</div>`);
+                    $(".messages").append(`<div class="alert alert-dark" role="alert">${data.error}</div>`);
                 }else{
                     localStorage.setItem("lastSearch", JSON.stringify({ searchString: searchValue}));
                     data.forEach((ele)=>{
                         $("#dataInfo").append(`
-                        <div class="col-lg-12 card mb-4">
+                        <div class="col-lg-12 card mb-5 bar-info">
                             <div class="row">
-                                <div class="col-sm-5">
+                                <div class="col-sm-5 bar-info-img">
                                     <img class="card-img-top" src="${ele.img}" alt="Card image">
                                 </div>
                                 <div class="col-sm-7">
@@ -53,7 +58,7 @@ let request = (searchValue)=>{
 
 
 if(localStorage.getItem("isLogginIn")) {
-    localStorage.setItem("isLoggingIn", "false");
+    localStorage.setItem("isLogginIn", "");
     let lastSearchData = JSON.parse(localStorage.getItem("lastSearch"));
     if(lastSearchData){
         $("#location").val(lastSearchData.searchString);
@@ -62,15 +67,6 @@ if(localStorage.getItem("isLogginIn")) {
 }
 
 $(document).ready((()=>{
-    if(localStorage.getItem("isLogginIn")) {
-        localStorage.setItem("isLoggingIn", "false");
-        let lastSearchData = JSON.parse(localStorage.getItem("lastSearch"));
-        if(lastSearchData){
-            $("#location").val(lastSearchData.searchString);
-            latest = lastSearchData.searchString;
-            $("#send").click();
-        }
-    }
     $("#facebook, #twitter").click((()=>{
         localStorage.setItem("isLogginIn","true");
         return true;

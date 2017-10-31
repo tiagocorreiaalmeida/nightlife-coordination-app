@@ -14,7 +14,7 @@ const User = require("./models/user");
 
 passportConfig(passport);
 
-app = express();
+const app = express();
 
 app.set("views",__dirname+"/views");   
 app.set("view engine","hbs");
@@ -36,8 +36,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use((req,res,next)=>{
     res.locals.isAuthenticated = req.isAuthenticated();
-    res.locals.userphoto = req.user.photo;
-    res.locals.username = req.user.name;
+    if(req.isAuthenticated()){
+        res.locals.userphoto = req.user.photo;
+        res.locals.username = req.user.name;
+    }
     next();
 });
 
