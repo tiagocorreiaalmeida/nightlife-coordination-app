@@ -31,7 +31,7 @@ module.exports = (passport)=>{
     },(accessToken ,refreshToken, profile, done)=>{
         User.findOne({oauthID:profile.id}).then((user)=>{
             if(user) return user;
-            return newUser = newUser({
+             return new User({
                 oauthID:profile.id,
                 name:profile.displayName,
                 photo:profile.photos[0].value,
