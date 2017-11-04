@@ -1,5 +1,5 @@
 let latest = "";
-let request = (searchValue)=>{
+function request(searchValue){
     if(searchValue===""){
       $(".messages").empty();
       $(".messages").append('<div class="alert alert-dark" role="alert">Insert a location on the field</div>');
@@ -9,14 +9,14 @@ let request = (searchValue)=>{
         $("#location").attr("disabled","disabled");
         latest = searchValue;
         $(".load-wrap").addClass("active");
-        $.getJSON("/search/"+searchValue,((data)=>{
+        $.getJSON("/search/"+searchValue,(function(data){
                 $("#dataInfo").empty();
                 $(".messages").empty();
                 if(data.error){
                     $(".messages").append(`<div class="alert alert-dark" role="alert">${data.error}</div>`);
                 }else{
                     localStorage.setItem("lastSearch", JSON.stringify({ searchString: searchValue}));
-                    data.forEach((ele)=>{
+                    data.forEach(function(ele){
                         $("#dataInfo").append(`
                         <div class="col-lg-12 card mb-5 bar-info">
                             <div class="row">
@@ -49,7 +49,7 @@ let request = (searchValue)=>{
                 $("#send").removeAttr("disabled");
                 $("#location").removeAttr("disabled");
         }))
-        .fail((e)=>{
+        .fail(function(e){
             console.log(e);
         })
         
@@ -66,30 +66,30 @@ if(localStorage.getItem("isLogginIn")) {
     }
 }
 
-$(document).ready((()=>{
-    $("#facebook, #twitter").click((()=>{
+$(document).ready(function(){
+    $("#facebook, #twitter").click(function(){
         localStorage.setItem("isLogginIn","true");
         return true;
-    }));
+    });
 
-    $("#logout").click((()=>{
+    $("#logout").click(function(){
         localStorage.clear();
-    }));
+    });
 
-    $(document).keypress((e)=>{
+    $(document).keypress(function(e){
         if(e.which === 13){
             $("#send").click();
         }
     });
-    $("#send").click((()=>{
+    $("#send").click(function(){
         let input = $("#location").val();
         request(input);
-    }));
+    });
 
     $("#dataInfo").on("click", "#go", function(){
         let element = $(this);
         let buttonid = $(this).attr("data-attr");
-        $.getJSON("/go/"+buttonid,((data)=>{
+        $.getJSON("/go/"+buttonid,(function(data){
             if(data && !data.error){
                 element.text("Going: " + data["users_going"]);
             }else if(data.error){
@@ -97,4 +97,4 @@ $(document).ready((()=>{
             }
         }));
     });
-}));
+});
